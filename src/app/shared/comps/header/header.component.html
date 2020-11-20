@@ -1,0 +1,36 @@
+<header fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="marka">
+    <img src="../../../../assets/img/apple.png" alt="" />
+  </div>
+  <div
+    class="nav-list"
+    fxLayout="row"
+    fxLayout.lt-sm="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="center center"
+  >
+    <button
+      mat-raised-button
+      mat-raised-button
+      mat-raised-button
+      mat-raised-button
+      (click)="showNav()"
+      fxHide.gt-xs
+      class="nav-toggler"
+    >
+      navtog
+    </button>
+    <div
+      [fxHide.lt-sm]="!navListOpen"
+      fxLayout="row"
+      fxLayoutGap="10px"
+      fxLayout.lt-sm="column"
+    >
+      <button mat-raised-button>item one</button>
+      <button mat-raised-button>item two</button>
+      <button mat-raised-button>item three</button>
+      <button mat-raised-button>item four</button>
+    </div>
+    <div></div>
+  </div>
+</header>

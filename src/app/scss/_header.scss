@@ -1,0 +1,43 @@
+header {
+  background-color: grey;
+  min-height: 70px;
+  width: 100%;
+}
+.marka {
+  margin-left: 20px;
+  img {
+    height: 90px;
+  }
+}
+.nav-toggler {
+  margin-right: 20px !important;
+}
+.mat-drawer {
+  width: 300px;
+}
+.mat-content {
+  min-height: 150vh;
+}
+@mixin border($color: black, $thickness: 1px) {
+  border: solid $color $thickness;
+  border-radius: 5px;
+  padding: 3px 10px;
+  p {
+    color: $color;
+  }
+}
+.simple-card {
+  @include border;
+}
+.my-div {
+  padding: 10px 0px;
+}
+.done {
+  @include border(green);
+}
+.max-width {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px;
+}

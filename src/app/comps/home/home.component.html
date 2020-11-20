@@ -1,0 +1,68 @@
+<div>
+  <form
+    novalidate
+    (ngSubmit)="addTodo(todoText.value)"
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+    class="max-width"
+  >
+    <mat-form-field fxFlex="0 1 calc(70%)">
+      <mat-label>type your next to do</mat-label>
+      <input #todoText matInput placeholder="Ex. Eat Pizza" />
+    </mat-form-field>
+    <button fxFlex="0 1 calc(25%)" mat-raised-button type="submit">add</button>
+  </form>
+</div>
+<div fxLayout="column" fxLayoutGap="0px" class="max-width">
+  <div
+    class="my-div"
+    *ngFor="let todo of toDos"
+    fxFlex="0 1 calc(33.3% - 0px)"
+    fxFlex.lt-md="0 1 calc(50% - 0px)"
+    fxFlex.lt-sm="0 1 100%"
+  >
+    <div
+      class="simple-card"
+      [class.done]="todo.done"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+    >
+      <p fxFlex="1 1 auto">
+        {{ todo.text }}
+      </p>
+      <button
+        *ngIf="!todo.done"
+        mat-raised-button
+        color="primary"
+        fxFlex="0 0 auto"
+        (click)="toDoDone(todo.id)"
+      >
+        done
+      </button>
+      <button
+        *ngIf="todo.done"
+        mat-raised-button
+        color="primary"
+        fxFlex="0 0 auto"
+        (click)="toDoDone(todo.id)"
+      >
+        not done
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        fxFlex="0 1 auto"
+        (click)="deleteTodo(todo.id)"
+      >
+        delete
+      </button>
+    </div>
+  </div>
+  <div
+    class="my-div"
+    fxFlex="0 3 calc(33.3% - 0px)"
+    fxFlex.lt-md="0 1 auto"
+    fxFlex.lt-sm="0 1 100%"
+  ></div>
+</div>
