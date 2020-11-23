@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
         'please write something to do ',
         'ok',
         {
-          duration: 500,
+          duration: 1000,
         }
       );
       snackBarRef.onAction().subscribe(() => {
