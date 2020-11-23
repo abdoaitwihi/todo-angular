@@ -35,7 +35,7 @@ header {
   padding: 10px 0px;
 }
 .done {
-  @include border(green);
+  @include border(transparent, 0px);
   text-decoration: line-through;
   opacity: 0.5;
   transition: 0.3s;
