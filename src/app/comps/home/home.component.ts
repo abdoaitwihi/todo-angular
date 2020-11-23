@@ -12,20 +12,6 @@ interface todos {
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public cards = [
-    {
-      title: 'card one',
-      img: 'img1.jpg',
-    },
-    {
-      title: 'card two',
-      img: 'img2.JPG',
-    },
-    {
-      title: 'card three',
-      img: 'img3.jpg',
-    },
-  ];
   @ViewChild('todoText') todoTextInput: ElementRef;
   toDos: todos[] = [
     {
@@ -44,6 +30,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTodos();
+    setTimeout(() => {
+      this.focusOnInput();
+    }, 300);
   }
   updateId() {
     if (this.toDos === null) {
@@ -58,6 +47,9 @@ export class HomeComponent implements OnInit {
   }
   saveTodos() {
     localStorage.setItem('todos', JSON.stringify(this.toDos));
+  }
+  focusOnInput() {
+    this.todoTextInput.nativeElement.focus();
   }
   getTodos() {
     if (JSON.parse(localStorage.getItem('todos')) != null) {
@@ -74,7 +66,7 @@ export class HomeComponent implements OnInit {
         }
       );
       snackBarRef.onAction().subscribe(() => {
-        console.log('hi');
+        this.focusOnInput();
       });
       return;
     }
