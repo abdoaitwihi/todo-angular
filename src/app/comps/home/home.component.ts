@@ -1,5 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/shared';
 
 interface todos {
   id: number;
@@ -30,7 +36,7 @@ export class HomeComponent implements OnInit {
     },
   ];
   lastId: number;
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private _snackBar: MatSnackBar, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getTodos();
@@ -96,9 +102,21 @@ export class HomeComponent implements OnInit {
     this.saveTodos();
   }
   deleteTodo(id: number) {
-    this.toDos = this.toDos.filter((todo) => todo.id - id);
-    this.saveTodos();
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { message: 'are you sure you wanna delte this to do' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.toDos = this.toDos.filter((todo) => todo.id - id);
+        this.saveTodos();
+        this._snackBar.open('you deleted a todo', '', {
+          duration: 1000,
+        });
+      }
+    });
   }
+
   toDoDone(id: number) {
     this.toDos.forEach((todo) => {
       if (todo.id === id) {

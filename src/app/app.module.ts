@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from './angular-material.module';
 import { HomeComponent } from './comps/home/home.component';
 import {
+  ConfirmationDialogComponent,
   FooterComponent,
   HeaderComponent,
   LayoutComponent,
@@ -27,6 +28,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     LayoutComponent,
     SimpleCardComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
