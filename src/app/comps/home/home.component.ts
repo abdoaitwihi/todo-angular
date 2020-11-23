@@ -5,6 +5,7 @@ interface todos {
   id: number;
   done: boolean;
   text: string;
+  focus?: boolean;
 }
 @Component({
   selector: 'app-home',
@@ -13,16 +14,19 @@ interface todos {
 })
 export class HomeComponent implements OnInit {
   @ViewChild('todoText') todoTextInput: ElementRef;
+  today: number = Date.now();
   toDos: todos[] = [
     {
       id: 0,
       done: true,
       text: 'todo one',
+      focus: false,
     },
     {
       id: 1,
       done: false,
       text: 'todo two',
+      focus: true,
     },
   ];
   lastId: number;
@@ -57,6 +61,7 @@ export class HomeComponent implements OnInit {
     }
   }
   addTodo(todoText: string) {
+    this.focusOnInput();
     if (!todoText) {
       let snackBarRef = this._snackBar.open(
         'please write something to do ',
@@ -80,6 +85,14 @@ export class HomeComponent implements OnInit {
     };
     this.todoTextInput.nativeElement.value = '';
     this.toDos.push(myTodo);
+    this.saveTodos();
+  }
+  updateTodo(target) {
+    this.toDos.forEach((todo) => {
+      if (todo.id === +target.id) {
+        todo.text = target.value;
+      }
+    });
     this.saveTodos();
   }
   deleteTodo(id: number) {

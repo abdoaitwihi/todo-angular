@@ -27,7 +27,8 @@ header {
   }
 }
 .simple-card {
-  @include border;
+  @include border(transparent, 0px);
+  box-shadow: 1px 2px 3px black;
   transition: 0.3s;
 }
 .my-div {
@@ -38,10 +39,29 @@ header {
   text-decoration: line-through;
   opacity: 0.5;
   transition: 0.3s;
+  input {
+    text-decoration: line-through;
+  }
+}
+.my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.pb-0 {
+  padding-bottom: 0 !important;
 }
 .max-width {
   max-width: 500px;
   margin: auto;
-  margin-top: 20px;
   padding: 10px;
+}
+.editableInput {
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.myheader {
+  font-size: 25px;
 }
