@@ -28,12 +28,16 @@ header {
 }
 .simple-card {
   @include border;
+  transition: 0.3s;
 }
 .my-div {
   padding: 10px 0px;
 }
 .done {
   @include border(green);
+  text-decoration: line-through;
+  opacity: 0.5;
+  transition: 0.3s;
 }
 .max-width {
   max-width: 500px;
